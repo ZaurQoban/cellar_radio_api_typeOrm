@@ -1,6 +1,6 @@
 import { ArtistDTO } from '../dtos/artist.dto';
 import { ArtistRepository } from '../repositories/artist.repository';
-import { IArtist } from '../interfaces/IArtist';
+import { IArtist } from '../interfaces/IArtist.interface';
 import { validate } from 'class-validator';
 import { formatErrors } from '../helpers/formatError';
 
