@@ -1,4 +1,5 @@
 import { DataSource } from "typeorm";
+import { ArtistEntity } from "../entities/artist.entity";
 
 
 export const appDataSource = new DataSource({
@@ -10,5 +11,5 @@ export const appDataSource = new DataSource({
     password:'postgres',
     synchronize:true,
     logging:true,
-    entities:[]
+    entities:[ArtistEntity]
 });
