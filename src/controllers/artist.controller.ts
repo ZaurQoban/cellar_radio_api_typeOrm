@@ -17,7 +17,7 @@ export class ArtistController {
     };
 
     getArtist:RequestHandler = async(req,resp)=>{
-        const {id} = req.params
+        const {id} = req.params;
         resp.send(await this.service.getArtist(Number(id)));
     };
 
@@ -37,4 +37,28 @@ export class ArtistController {
         };
         resp.send(artist);
     };
+
+    editArtist:RequestHandler = async(req,resp)=>{
+        const {id} = req.params;
+        const artistDto = plainToClass(ArtistDTO,req.body,{excludeExtraneousValues:true});
+        if(req.file) artistDto.image = req.file.filename;
+        let artist;
+        try{
+            artist = await this.service.editArtist(Number(id),artistDto);
+        } catch (error) {
+            if(Array.isArray(error)){
+                console.log(error);
+                resp.status(400).send(error)
+            } else{
+                resp.status(500).send(error)
+            };
+        };
+        resp.send(artist);
+    };
+
+    deleteArtist:RequestHandler = async(req,resp)=>{
+        const {id} = req.params;
+        resp.send(await this.service.deleteArtist(Number(id)));
+    };
+
 };

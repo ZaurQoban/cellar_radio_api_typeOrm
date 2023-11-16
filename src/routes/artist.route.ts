@@ -19,5 +19,7 @@ export class ArtistRouter implements IRoute{
         this.router.get('/',this.controller.getArtists);
         this.router.get('/:id',this.controller.getArtist);
         this.router.post('/', upload.single('image'),this.controller.createArtist);
+        this.router.put('/:id',upload.single('image'),this.controller.editArtist);
+        this.router.delete('/:id', this.controller.deleteArtist);
     };
 };
