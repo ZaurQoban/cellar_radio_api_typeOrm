@@ -41,5 +41,4 @@ export class ArtistService{
             return message;
         } else throw new Error('No artist found to delete');
     };
-
 };

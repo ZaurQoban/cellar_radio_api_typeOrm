@@ -30,16 +30,12 @@ export class ArtistRepository extends Repository<IArtist>{
     async editArtist(id:number, artistDto:ArtistDTO):Promise<IArtist>{
         let artist = await this.findOne({where:{id}});
         if(!artist) {throw new Error('Artist not found')};
-        artist.title = artistDto.title;
-        artist.info = artistDto.info;
-        artist.image = artistDto.image;
-        return await this.save(artist);
+        return await this.save({id, ...artistDto});
     };
 
     async deleteArtist(id:number):Promise<string>{
-        let artist = await this.findOne({where:{id}});
+        let artist = await this.delete({id});
         if(!artist) {throw new Error('Artist not found')};
-        await this.delete(artist);
-        return `${artist.title} was deleted successfully`;
+        return `Artist was deleted successfully`;
     };
 };
